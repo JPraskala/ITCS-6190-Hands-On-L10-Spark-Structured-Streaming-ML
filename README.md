@@ -20,3 +20,6 @@ For Task 4, my approach was to look back at the lecture notes as well as ask the
 
 ### Results Screenshot
 
+<img width="1327" height="643" alt="task4_screenshot" src="https://github.com/user-attachments/assets/e41aec8d-0c0d-47e8-8c75-255aa8cff30b" />
+
+
