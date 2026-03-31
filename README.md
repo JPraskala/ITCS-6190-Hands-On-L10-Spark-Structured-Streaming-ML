@@ -6,7 +6,7 @@
 
 #### Part 1
 
-In part 1 of Task 4, we are training an offline model using **PySpark** using a dataset titled “training-dataset.csv”. The dataset consists of 5 features and 58 samples. The purpose of the offline model training is for the program to learn the relationship between `distance_km` and `fare_amount`. In the offline model training, we first convert `distance_km` and `fare_amount` to the DoubleType provided by spark.  After that, a `VectorAssembler` object is created, which allows us to combine the feature columns into one single ‘features’ vector. Using this vector, the training set is transformed and then fit to the model, which then produces an output that is saved so it can be used for the streaming process.
+In part 1 of Task 4, we are training an offline model using **PySpark** using a dataset titled “training-dataset.csv”. The dataset consists of 5 features and 58 samples. The purpose of the offline model training is for the program to learn the relationship between `distance_km` and `fare_amount`. In the offline model training, we first convert `distance_km` and `fare_amount` to the DoubleType provided by spark.  After that, a `VectorAssembler` object is created, which allows us to combine the feature columns into one single `features` vector. Using this vector, the training set is transformed and then fit to the model, which then produces an output that is saved so it can be used for the streaming process.
 
 #### Part 2
 
@@ -22,4 +22,27 @@ For Task 4, my approach was to look back at the lecture notes as well as ask the
 
 <img width="1327" height="643" alt="task4_screenshot" src="https://github.com/user-attachments/assets/e41aec8d-0c0d-47e8-8c75-255aa8cff30b" />
 
+
+## Task 5
+
+### Explanations
+
+#### Part 1
+
+In part 1 of Task 5, we are training an offline model aggregated into 5-minute windows, calculating the average fare for each window. The purpose of the window is to perform **feature engineering**; instead of using a raw timestamp like in Task 4, we are cycling through hours and minutes for a given day. Once the window is setup, a `VectorAssembler` object is created which takes `hour_of_day` and `minute_of_hour` as the input columns and `features` as the output column. The object then transforms the dataset, and the transformed data is run through the Linear Regression model; in the end, the data that is produced is saved so it can be used for the streaming process.
+
+#### Part 2
+
+In part 2 of Task 5, we are live streaming the data using the same aggregated 5-minute window from before. The purpose of the streaming is to predict the average fare for a given time window. After creating the window feature in the dataset, another `VectorAssembler` object is created which takes in `hour_of_day` and `minute_of_hour` as the input columns and `features` as the output column. Once the object transforms the training dataset, we then load the dataset that was created from part 1 and call the transform function on it; the features dataset is passed into the transform function. The predictions are then output to the console like in Task 4 to visualize the output.
+
+### Approaches 
+
+#### Parts 1 and 2
+
+For Task 5, since I did not have the TA's to ask for help as I did this task away from the classroom, I still looked at the lecture notes and spark documentation to help solve the problems. Overall, my approach is very similar to how it was in Task 4; I used whatever resources were available to me to solve the TODOs that were required for me to fill out.
+
+### Results Screenshot
+
+
+<img width="848" height="536" alt="task5_screenshot" src="https://github.com/user-attachments/assets/6dad35fe-7bdc-4186-9be7-aa3f44dd376a" />
 
